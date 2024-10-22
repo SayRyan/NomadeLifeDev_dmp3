@@ -1,6 +1,7 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { userAuthentication } from '../../hooks/userAuthentication'
+import { useAuthentication } from '../../hooks/useAuthentication'
 
 const Register = () => {
   //#region Controller Service
@@ -10,7 +11,7 @@ const Register = () => {
   const [corfirmedPassword, setCorfirmedPassword] = useState('')
   const [error, setError] = useState('')
 
-  const { createUser, error: authError, loading } = userAuthentication()
+  const { createUser, error: authError, loading } = useAuthentication()
 
   const handlerSubmit = async (e) => {
     e.preventDefault()
