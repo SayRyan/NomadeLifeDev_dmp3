@@ -3,16 +3,16 @@ import { getAnalytics } from "firebase/analytics"
 import { getFirestore } from "firebase/firestore"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyChNM_oR53KHFniahMot64vrnjVvIIuwHc",
-  authDomain: "nomadelife-vsi.firebaseapp.com",
-  projectId: "nomadelife-vsi",
-  storageBucket: "nomadelife-vsi.appspot.com",
-  messagingSenderId: "146063288386",
-  appId: "1:146063288386:web:b2654d95ef6f59223ae5db",
-  measurementId: "G-GYKRFVEXK5"
+  apiKey: "AIzaSyBOE-XMh9uJnVwXA9VRomnIoC7liEDyeeQ",
+  authDomain: "nomadelife-richardryan.firebaseapp.com",
+  projectId: "nomadelife-richardryan",
+  storageBucket: "nomadelife-richardryan.appspot.com",
+  messagingSenderId: "620692174738",
+  appId: "1:620692174738:web:edd05b25469713614bb34b",
+  measurementId: "G-WYD2TG2LWJ"
 }
 const app = initializeApp(firebaseConfig)
 const analytics = getAnalytics(app)
 const db = getFirestore(app)
 
-export {db}
+export {db, analytics}
