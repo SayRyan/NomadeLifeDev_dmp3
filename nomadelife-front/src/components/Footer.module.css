@@ -2,6 +2,7 @@
     height: 250px;
     display: flex;
     flex-direction: column;
+    padding-left: 30px;
     justify-content: center;
     background-color: #edf3f6;
 }
