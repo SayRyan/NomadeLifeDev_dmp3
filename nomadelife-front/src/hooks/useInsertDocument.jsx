@@ -1,63 +1,62 @@
-import { useState, useEffect, useReducer } from 'react'
-import { db } from '../firebase/config'
-import { collection, addDoc, Timestamp } from 'firebase/firestore'
-
+import { useState, useEffect, useReducer } from "react";
+import { db } from "../firebase/config"
+import { collection, addDoc, Timestamp } from "firebase/firestore";
+ 
 const initialState = {
     loading: null,
     error: null
 }
-
+ 
 const insertReducer = (state, action) => {
-    switch(action.type){
+    switch (action.type) {
         case "LOADING":
-            return {loading: true, error: null}
+            return { loading: true, error: null }
         case "INSERT_DOC":
-            return {loading: false, error: null}
+            return { loading: false, error: null }
         case "ERROR":
-            return {loading: false, error: action.payload}
+            return { loading: false, error: action.payload }
         default:
             return state
     }
 }
-
-// eslint-disable-next-line no-unused-vars
+ 
 export const useInsertDocument = (docCollection) => {
-    const [response, dispath] = useReducer(insertReducer, initialState)
+    const [response, dispatch] = useReducer(insertReducer, initialState)
     const [cancelled, setCancelled] = useState(false)
-
-    const checkCancelBeforeDispath = (action) => {
-        if(!cancelled){
-            dispath(action)
+ 
+    const checkCancelBeforeDispatch = (action) => {
+        if (!cancelled) {
+            dispatch(action)
         }
     }
-
+ 
     const insertDocument = async (document) => {
-        checkCancelBeforeDispath({type:"LOADING"})
-
-        try{
-            const newDocument = {...document, createAt: Timestamp.now()}
+        checkCancelBeforeDispatch({ type: "LOADING" })
+ 
+        try {
+            const newDocument = { ...document, createdAt: Timestamp.now() }
+ 
             const insertDocument = await addDoc(
-                // eslint-disable-next-line no-undef
-                collection(db, dbCollection),
+                collection(db, docCollection),
                 newDocument
             )
-
-            checkCancelBeforeDispath({
-                type:"INSERT_DOC",
+ 
+            checkCancelBeforeDispatch({
+                type: "INSERT_DOC",
                 payload: insertDocument
             })
-        }catch(error){
-            checkCancelBeforeDispath({
-                type:'ERROR',
+        } catch(error){
+            checkCancelBeforeDispatch({
+                type: "ERROR",
                 payload: error.message
             })
         }
     }
-
-    useEffect(() => {
+ 
+    useEffect(() =>{
         return () => setCancelled(true)
-    },[])
-
+    }, [])
+ 
     return{
         insertDocument,
         response
