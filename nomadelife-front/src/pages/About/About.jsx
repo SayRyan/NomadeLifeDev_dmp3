@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react'
 import logo from '../../../public/logo-quadrada.png';
 
@@ -8,3 +9,5 @@ export const About = () => {
     </div>
   )
 }
+
+export default About
