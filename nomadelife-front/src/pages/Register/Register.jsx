@@ -2,6 +2,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useAuthentication } from '../../hooks/useAuthentication'
+import styles from './Register.module.css'
 
 const Register = () => {
   //#region Controller Service
@@ -41,7 +42,7 @@ const Register = () => {
   //#region View Browser Page
   return (
     <div>
-      <h1>Compartilhe suas experiências com outros nomades</h1>
+      <h1 className={styles.h1}>Compartilhe suas experiências com outros nomades</h1>
       <form onSubmit={handlerSubmit}>
         <label>
           <span>Nome: </span>
