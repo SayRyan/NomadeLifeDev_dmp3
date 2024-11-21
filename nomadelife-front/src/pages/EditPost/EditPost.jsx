@@ -31,6 +31,7 @@ const EditPost = () => {
     }
   }, [post])
 
+  // eslint-disable-next-line no-unused-vars
   const { user } = useAuthValue()
 
   const navigate = useNavigate()
@@ -44,6 +45,7 @@ const EditPost = () => {
     // validate image
     try {
       new URL(image)
+    // eslint-disable-next-line no-unused-vars
     } catch (error) {
       setFormError("A imagem precisa ser uma URL.")
     }
